@@ -51,7 +51,7 @@ export default function Hero() {
           랜드마크가 서다.
         </h1>
         <p className="mt-4 text-[15px] font-light text-pearl/80 md:mt-5 md:text-xl">
-          <span className="block md:inline">외삼미1지구 협동조합형 민간임대아파트</span>
+          <span className="block md:inline">서동탄역 외삼미1지구 민간임대아파트</span>
           <span className="hidden md:inline"> · </span>
           <span className="block md:inline">전용 59㎡ · 84㎡</span>
         </p>

@@ -9,7 +9,7 @@ export default function Rental() {
         <SectionHead
           className="md:col-span-4"
           over="Private Rental"
-          title={"협동조합형\n민간임대 안내"}
+          title={"서동탄역 외삼미1지구\n민간임대아파트"}
           desc="새 아파트에서 오래, 안정적으로. 민간임대주택으로 공급되는 서동탄역 랜시티의 거주 방식입니다."
         />
 

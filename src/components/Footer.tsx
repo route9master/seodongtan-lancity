@@ -20,7 +20,7 @@ export default function Footer() {
         </a>
 
         <div className="mt-6 text-[14px]" style={{ lineHeight: 1.9 }}>
-          <p>사업명 : 외삼미1지구 도시개발사업 내 협동조합형 민간임대아파트</p>
+          <p>사업명 : 서동탄역 외삼미1지구 민간임대아파트</p>
           <p>사업지 : 경기도 오산시 외삼미동 228번지 일원</p>
           <p>상담 문의 : {SITE.tel}</p>
           {agencyLine.length > 0 && <p>{agencyLine.join("  |  ")}</p>}

@@ -21,6 +21,14 @@ export const AGENCY = {
   retention: "상담 목적 달성 후 지체 없이 파기",
 };
 
+// 히어로 핵심 조건 — 고객 확인 완료(2026-10-21). 문구 변경 시 금지어 안내 재확인
+export const HERO_POINTS = [
+  { v: "계약금 1,000만원", s: "59㎡ · 84㎡ 동일" },
+  { v: "트리플 역세권", s: "계획 노선 포함" },
+  { v: "세금 부담 無", s: "거주 중 취득세 · 재산세" },
+  { v: "누구나 계약 가능", s: "주택 소유 · 소득 무관" },
+];
+
 export const NAV = [
   { id: "overview", label: "사업개요" },
   { id: "location", label: "입지환경" },

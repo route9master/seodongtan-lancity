@@ -1,5 +1,5 @@
 import Picture from "./Picture";
-import { DISCLAIMER, SITE } from "@/data/site";
+import { DISCLAIMER, HERO_POINTS, SITE } from "@/data/site";
 
 const HERO_STATS = [
   { k: "최고", v: "29", u: "층" },
@@ -37,7 +37,7 @@ export default function Hero() {
         {/* 텍스트 가독성용 포토 스크림 (장식 아님) */}
         <div className="absolute inset-x-0 top-0 h-40" style={{ background: "linear-gradient(to bottom, rgba(14,33,64,.6), rgba(14,33,64,0))" }} aria-hidden />
         <div className="absolute inset-x-0 bottom-0 h-[62%]" style={{ background: "linear-gradient(to top, rgba(14,33,64,.9), rgba(14,33,64,0))" }} aria-hidden />
-        <div className="absolute inset-y-0 left-0 w-[70%]" style={{ background: "linear-gradient(to right, rgba(14,33,64,.78) 0%, rgba(14,33,64,.45) 45%, rgba(14,33,64,0) 100%)" }} aria-hidden />
+        <div className="absolute inset-y-0 left-0 w-[78%]" style={{ background: "linear-gradient(to right, rgba(14,33,64,.82) 0%, rgba(14,33,64,.6) 50%, rgba(14,33,64,0) 100%)" }} aria-hidden />
       </div>
 
       <div className="container-site relative z-10 pb-10 pt-6 md:mt-auto md:pb-16 md:pt-32">
@@ -46,7 +46,7 @@ export default function Hero() {
           LANDMARK CITY
         </p>
         <h1 className="mt-5 text-[36px] font-semibold leading-[1.18] tracking-tightest sm:text-[52px] md:mt-6 md:text-[72px]">
-          서동탄역 곁,
+          서동탄역,
           <br />
           랜드마크가 서다.
         </h1>
@@ -55,6 +55,16 @@ export default function Hero() {
           <span className="hidden md:inline"> · </span>
           <span className="block md:inline">전용 59㎡ · 84㎡</span>
         </p>
+
+        {/* 핵심 조건 4가지 (고객 요청 · 2026-10-21 확인) */}
+        <ul className="mt-7 grid max-w-xl grid-cols-2 gap-x-5 gap-y-5 md:mt-9 md:gap-y-6">
+          {HERO_POINTS.map((h) => (
+            <li key={h.v} className="border-l-2 border-burgundy-300 pl-3 md:pl-5">
+              <p className="text-[19px] font-semibold leading-tight tracking-tightest text-pearl md:text-[24px]">{h.v}</p>
+              <p className="mt-1.5 text-[12px] leading-snug text-pearl/65 md:text-[13px]">{h.s}</p>
+            </li>
+          ))}
+        </ul>
 
         <dl className="mt-8 flex max-w-xl items-stretch divide-x divide-pearl/25 border-y border-pearl/25 md:mt-10">
           {HERO_STATS.map((s) => (

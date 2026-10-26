@@ -5,6 +5,7 @@ import FloorPlans from "@/components/FloorPlans";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import InterestPopup from "@/components/InterestPopup";
 import Location from "@/components/Location";
 import MobileBar from "@/components/MobileBar";
 import Overview from "@/components/Overview";
@@ -28,6 +29,7 @@ export default function Home() {
       </main>
       <Footer />
       <MobileBar />
+      <InterestPopup />
     </>
   );
 }

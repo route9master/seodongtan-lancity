@@ -13,6 +13,12 @@ const todayStr = () => {
   return `${t.getFullYear()}-${t.getMonth() + 1}-${t.getDate()}`;
 };
 
+const isoToday = () => {
+  const t = new Date();
+  t.setMinutes(t.getMinutes() - t.getTimezoneOffset());
+  return t.toISOString().slice(0, 10);
+};
+
 const formatPhone = (v: string) => {
   const d = v.replace(/\D/g, "").slice(0, 11);
   if (d.length < 4) return d;
@@ -25,6 +31,9 @@ export default function InterestPopup() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [type, setType] = useState("");
+  const [visitDate, setVisitDate] = useState("");
+  const [visitTime, setVisitTime] = useState("");
+  const [minDate, setMinDate] = useState("");
   const [agree, setAgree] = useState(false);
   const [showPolicy, setShowPolicy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
@@ -39,6 +48,7 @@ export default function InterestPopup() {
     } catch {
       /* 저장소 차단 환경: 항상 노출 */
     }
+    setMinDate(isoToday());
     if (hidden) return;
     const t = window.setTimeout(() => setOpen(true), SHOW_DELAY);
     return () => window.clearTimeout(t);
@@ -71,9 +81,10 @@ export default function InterestPopup() {
     setNotice(null);
     if (!name.trim()) return setErr("이름을 입력해 주세요.");
     if (phone.replace(/\D/g, "").length < 10) return setErr("연락처를 정확히 입력해 주세요.");
+    if (!visitDate) return setErr("방문 희망 날짜를 선택해 주세요.");
     if (!agree) return setErr("개인정보 수집·이용에 동의해 주세요.");
     setErr(null);
-    const body = `[${SITE.name} 관심고객 등록]\n이름: ${name.trim()}\n연락처: ${phone}\n관심타입: ${type || "미정"}`;
+    const body = `[${SITE.name} 관심고객 등록]\n이름: ${name.trim()}\n연락처: ${phone}\n관심타입: ${type || "미정"}\n방문희망: ${visitDate} ${visitTime.trim() || "시간 미정"}`;
     setNotice(
       isMobile()
         ? "문자 앱이 열리면 전송 버튼을 눌러주세요."
@@ -159,6 +170,35 @@ export default function InterestPopup() {
               ))}
             </div>
           </fieldset>
+
+          <div className="grid grid-cols-[1.15fr_1fr] gap-4">
+            <div>
+              <label htmlFor={`${id}-date`} className="text-xs text-greige">
+                방문 희망 날짜 <span className="text-burgundy">*</span>
+              </label>
+              <input
+                id={`${id}-date`}
+                type="date"
+                className={`${field} num`}
+                value={visitDate}
+                min={minDate}
+                onChange={(e) => setVisitDate(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor={`${id}-time`} className="text-xs text-greige">
+                방문 희망 시간
+              </label>
+              <input
+                id={`${id}-time`}
+                className={field}
+                value={visitTime}
+                onChange={(e) => setVisitTime(e.target.value)}
+                placeholder="예) 오후 2시"
+                maxLength={20}
+              />
+            </div>
+          </div>
 
           <div className="border-t border-line pt-4">
             <div className="flex items-start justify-between gap-3">

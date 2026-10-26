@@ -9,9 +9,9 @@ export default function PrivacyText() {
       </p>
       <dl className="divide-y divide-line border-y border-line">
         {[
-          ["수집 항목", "이름, 연락처, 관심타입(선택)"],
+          ["수집 항목", "이름, 연락처, 관심타입(선택), 방문 희망 일시(관심고객 등록 시)"],
           ["수집 방법", "홈페이지 상담 신청 시 이용자 본인의 휴대전화 문자 메시지 발송"],
-          ["이용 목적", "민간임대 상담 및 안내"],
+          ["이용 목적", "민간임대 상담 및 방문 일정 안내"],
           ["보유 기간", AGENCY.retention],
         ].map(([k, v]) => (
           <div key={k} className="grid grid-cols-[96px_1fr] gap-4 py-3">

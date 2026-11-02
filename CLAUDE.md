@@ -5,7 +5,7 @@ Next.js 14 (App Router) · TypeScript · Tailwind 3 · framer-motion · Pretenda
 
 ## 구조
 - `src/data/site.ts` — 모든 문구·수치·연락처의 단일 출처. 문구 수정은 여기서만.
-- `src/components/*` — Hero → Overview → Location → Premium → Development → Complex → FloorPlans → Rental → Contact → Footer, MobileBar, InterestPopup(진입 1.2초 후 관심고객 등록 팝업, '오늘 하루 보지 않기'는 localStorage 날짜 기록)
+- `src/components/*` — Hero → Overview → Location → Premium → Development → Complex → FloorPlans → Rental → Contact → Footer, MobileBar, InterestPopup(진입 1.2초 후 팝업: ① 황금열쇠 증정 이벤트 화면 → 버튼 → ② 관심고객 등록 폼, '오늘 하루 보지 않기'는 localStorage 날짜 기록. 열쇠 이미지 `public/images/event/golden-key.webp` 배경색 #0C203F = 팝업 EVENT_BG)
 - `src/lib/sms.ts` — SMS 스킴. iOS `&body=` / Android `?body=` 분기
 - `docs/CONTENT.md` — 원본 자료(교육자료 3차 2026.09.17, 3차 광고 금지어 안내) 정리 및 원본 대비 수정 내역
 - `public/images/*` — 교육자료 PDF 원본 이미지에서 추출한 webp (Vercel 이미지 최적화 미사용)

@@ -26,8 +26,12 @@ const formatPhone = (v: string) => {
   return `${d.slice(0, 3)}-${d.slice(3, d.length - 4)}-${d.slice(-4)}`;
 };
 
+const EVENT_BG = "#0C203F"; // golden-key.webp 배경색과 동일 — 바꾸면 이미지 경계가 보임
+const GOLD = "#E6C677";
+
 export default function InterestPopup() {
   const [open, setOpen] = useState(false);
+  const [step, setStep] = useState<"event" | "form">("event");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [type, setType] = useState("");
@@ -112,6 +116,47 @@ export default function InterestPopup() {
         className="flex max-h-[calc(100dvh-2rem)] w-full max-w-[420px] flex-col overflow-hidden bg-pearl-50 text-navy outline-none"
         onClick={(e) => e.stopPropagation()}
       >
+        {step === "event" ? (
+          <div className="relative min-h-0 flex-1 overflow-y-auto text-pearl" style={{ background: EVENT_BG }}>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label="닫기"
+              className="absolute right-2 top-2 z-10 flex h-10 w-10 items-center justify-center text-pearl/60 hover:text-pearl"
+            >
+              <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden>
+                <path d="M3 3l14 14M17 3L3 17" stroke="currentColor" strokeWidth="1.5" />
+              </svg>
+            </button>
+            <div className="m-4 border px-5 pb-6 pt-8 text-center md:m-5 md:px-7" style={{ borderColor: `${GOLD}99` }}>
+              <p className="text-[20px] font-semibold tracking-tightest md:text-[22px]">{SITE.name}</p>
+              <p className="mt-1 text-[14px] font-medium" style={{ color: GOLD }}>
+                계약 고객 감사 이벤트
+              </p>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/event/golden-key.webp"
+                alt="황금열쇠"
+                width={720}
+                height={720}
+                className="mx-auto mt-2 w-[72%] max-w-[270px]"
+              />
+              <p className="text-[20px] font-semibold md:text-[22px]">계약 시</p>
+              <h2 id={`${id}-title`} className="mt-0.5 text-[38px] font-semibold leading-tight tracking-tightest md:text-[42px]" style={{ color: GOLD }}>
+                황금열쇠 증정
+              </h2>
+              <p className="mt-3 text-[13px] text-pearl/70">자세한 내용은 상담 시 안내해 드립니다</p>
+              <button
+                type="button"
+                onClick={() => setStep("form")}
+                className="mt-6 h-[52px] w-full bg-pearl text-[15px] font-semibold text-navy-900 transition-colors hover:bg-white"
+              >
+                관심고객 등록하고 혜택 안내받기
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
         <div className="relative shrink-0 bg-navy-900 px-6 pb-6 pt-7 text-pearl md:px-8">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/brand/lancity-white.svg" alt="LANCITY 서동탄역 랜시티" width={229} height={78} className="h-7 w-auto" />
@@ -239,12 +284,21 @@ export default function InterestPopup() {
             전화 상담 {SITE.tel}
           </a>
         </form>
+          </>
+        )}
 
-        <div className="grid shrink-0 grid-cols-2 border-t border-line text-[13px]">
-          <button type="button" onClick={hideToday} className="h-12 text-greige hover:text-navy">
+        <div
+          className={`grid shrink-0 grid-cols-2 border-t text-[13px] ${step === "event" ? "border-pearl/15 text-pearl" : "border-line"}`}
+          style={step === "event" ? { background: EVENT_BG } : undefined}
+        >
+          <button type="button" onClick={hideToday} className={`h-12 ${step === "event" ? "text-pearl/70 hover:text-pearl" : "text-greige hover:text-navy"}`}>
             오늘 하루 보지 않기
           </button>
-          <button type="button" onClick={() => setOpen(false)} className="h-12 border-l border-line font-medium text-navy hover:bg-pearl">
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className={`h-12 border-l font-medium ${step === "event" ? "border-pearl/15 text-pearl hover:bg-white/5" : "border-line text-navy hover:bg-pearl"}`}
+          >
             닫기
           </button>
         </div>
